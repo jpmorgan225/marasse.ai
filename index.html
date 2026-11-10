@@ -11,16 +11,16 @@
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg: #0d0208;
-      --bg-secondary: #0a0a0a;
-      --primary: #00ff41;
-      --secondary: #008f11;
-      --accent: #003b00;
-      --text: #e0e0e0;
-      --text-dim: #666;
-      --border: #1a3a1a;
-      --hover: #0d1f0d;
-      --danger: #ff3e3e;
+      --bg: #070000;
+      --bg-secondary: #0d0000;
+      --primary: #ff2e2e;
+      --secondary: #a30000;
+      --accent: #2a0000;
+      --text: #ecdede;
+      --text-dim: #7a6a6a;
+      --border: #3a0f0f;
+      --hover: #1a0505;
+      --danger: #ff6b6b;
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -35,8 +35,8 @@
       background:
         repeating-linear-gradient(
           0deg,
-          rgba(0, 255, 65, 0.05) 0px,
-          rgba(0, 255, 65, 0.05) 1px,
+          rgba(255, 46, 46, 0.05) 0px,
+          rgba(255, 46, 46, 0.05) 1px,
           transparent 1px,
           transparent 3px
         );
@@ -54,10 +54,10 @@
         rgba(0, 0, 0, 0.45) 100%
       );
     }
-    .marasse-glow { text-shadow: 0 0 8px rgba(0, 255, 65, 0.6); }
+    .marasse-glow { text-shadow: 0 0 8px rgba(255, 46, 46, 0.6); }
     .settings-section-title::before { content: '// '; color: var(--secondary); }
-    .settings-section-title::-webkit-selection { background: rgba(0,255,65,.2); }
-    .logo-text { text-shadow: 0 0 12px rgba(0, 255, 65, .55); letter-spacing: 1px; }
+    .settings-section-title::-webkit-selection { background: rgba(255, 46, 46,.2); }
+    .logo-text { text-shadow: 0 0 12px rgba(255, 46, 46, .55); letter-spacing: 1px; }
     .new-chat-btn span { font-weight: 900; }
     /* =================== /MAR4SS3 =================== */
 
@@ -72,14 +72,62 @@
     #marasse-boot.hide { opacity: 0; pointer-events: none; }
     #marasse-boot pre {
       font-size: 13px; line-height: 1.7; color: var(--primary);
-      text-shadow: 0 0 8px rgba(0, 255, 65, .45); white-space: pre-wrap;
+      text-shadow: 0 0 8px rgba(255, 46, 46, .45); white-space: pre-wrap;
     }
     #marasse-boot .boot-skip {
       position: absolute; bottom: 18px; left: 0; right: 0; text-align: center;
       font-size: 11px; color: var(--text-dim); letter-spacing: 2px;
     }
     #marasse-boot::backdrop { background: transparent; }
-    /* =================== /BOOT =================== */    /* Safari-safe viewport height */
+    /* =================== /BOOT =================== */
+
+    /* =================== FOND HACKER ROUGE =================== */
+    body {
+      background: radial-gradient(ellipse at 50% 40%, #120000 0%, #070000 55%, #030000 100%) !important;
+    }
+    #marasse-bg { position: fixed; inset: 0; z-index: -1; overflow: hidden; pointer-events: none; }
+    #marasse-rain { position: absolute; inset: 0; width: 100%; height: 100%; opacity: .55; }
+    #marasse-head {
+      position: absolute; left: 50%; top: 54%;
+      transform: translate(-50%, -50%);
+      height: 60vh; max-width: 100vw;
+      opacity: .22;
+      filter: drop-shadow(0 0 46px rgba(255, 46, 46, .10));
+    }
+
+    /* =================== REFONTE CHAT ROUGE/NOIR =================== */
+    .sidebar { background: rgba(10, 0, 0, .82) !important; backdrop-filter: blur(3px); }
+    .message-avatar { border-radius: 2px; }
+    .message.user .message-content {
+      background: linear-gradient(135deg, rgba(122, 0, 0, .55), rgba(30, 0, 0, .85));
+      border: 1px solid rgba(255, 46, 46, .35);
+      border-radius: 2px;
+      box-shadow: inset 0 0 24px rgba(255, 46, 46, .07);
+    }
+    .message.assistant .message-content {
+      background: rgba(12, 0, 0, .72);
+      border: 1px solid rgba(255, 46, 46, .16);
+      border-left: 2px solid var(--primary);
+      border-radius: 2px;
+      backdrop-filter: blur(2px);
+    }
+    .message.assistant .message-content::before {
+      content: '> ';
+      color: var(--primary);
+      opacity: .55;
+    }
+    .message.user .message-avatar {
+      background: rgba(255, 46, 46, .08);
+      border: 1px solid rgba(255, 46, 46, .25);
+      color: var(--primary);
+    }
+    .message.assistant .message-avatar {
+      background: rgba(255, 46, 46, .12);
+      border: 1px solid rgba(255, 46, 46, .3);
+      color: var(--primary);
+      text-shadow: 0 0 6px rgba(255, 46, 46, .4);
+    }
+    /* =================== /FOND HACKER =================== */    /* Safari-safe viewport height */
     html {
       height: -webkit-fill-available;
     }
@@ -740,16 +788,16 @@
     }
 
     .message.user .message-avatar {
-      background: rgba(0, 255, 65, 0.08);
-      border: 1px solid rgba(0, 255, 65, 0.25);
+      background: rgba(255, 46, 46, 0.08);
+      border: 1px solid rgba(255, 46, 46, 0.25);
       color: var(--primary);
     }
 
     .message.assistant .message-avatar {
-      background: rgba(0, 255, 65, 0.12);
-      border: 1px solid rgba(0, 255, 65, 0.3);
+      background: rgba(255, 46, 46, 0.12);
+      border: 1px solid rgba(255, 46, 46, 0.3);
       color: var(--primary);
-      text-shadow: 0 0 6px rgba(0, 255, 65, 0.4);
+      text-shadow: 0 0 6px rgba(255, 46, 46, 0.4);
     }
 
     .message-content {
@@ -819,7 +867,7 @@
 
     .msg-action-btn {
       background: transparent;
-      border: 1px solid rgba(0, 255, 65, 0.15);
+      border: 1px solid rgba(255, 46, 46, 0.15);
       border-radius: 4px;
       color: var(--primary);
       padding: 5px 7px;
@@ -836,9 +884,9 @@
 
     .msg-action-btn:hover {
       opacity: 1;
-      background: rgba(0, 255, 65, 0.08);
-      border-color: rgba(0, 255, 65, 0.4);
-      text-shadow: 0 0 6px rgba(0, 255, 65, 0.5);
+      background: rgba(255, 46, 46, 0.08);
+      border-color: rgba(255, 46, 46, 0.4);
+      text-shadow: 0 0 6px rgba(255, 46, 46, 0.5);
     }
 
     .msg-action-btn:active {
@@ -848,9 +896,9 @@
     .msg-action-btn.copied {
       opacity: 1;
       color: var(--primary);
-      background: rgba(0, 255, 65, 0.12);
+      background: rgba(255, 46, 46, 0.12);
       border-color: var(--primary);
-      text-shadow: 0 0 8px rgba(0, 255, 65, 0.6);
+      text-shadow: 0 0 8px rgba(255, 46, 46, 0.6);
     }
 
     /* Magic info display for assistant messages */
@@ -988,7 +1036,7 @@
 
     /* Grade color classes for inline use */
     .grade-elite { color: #ffd700 !important; }
-    .grade-excellent { color: #00ff41 !important; }
+    .grade-excellent { color: #ff2e2e !important; }
     .grade-good { color: #00bfff !important; }
     .grade-acceptable { color: #ffaa00 !important; }
     .grade-poor { color: #ff3e3e !important; }
@@ -1013,7 +1061,7 @@
     }
 
     .magic-model-item.winner { color: #ffd700; border-color: #ffd700; background: rgba(255, 215, 0, 0.15); }
-    .magic-model-item.success { color: #00ff41; }
+    .magic-model-item.success { color: #ff2e2e; }
     .magic-model-item.fail { color: #ff4444; opacity: 0.6; }
 
     .magic-logs-header {
@@ -1048,7 +1096,7 @@
     }
 
     .magic-log-entry.step { color: #ffcc00; }
-    .magic-log-entry.success { color: #00ff41; }
+    .magic-log-entry.success { color: #ff2e2e; }
     .magic-log-entry.fail { color: #ff4444; }
     .magic-log-entry.info { color: #888; }
     .magic-log-entry.warn { color: #ff9900; }
@@ -1219,8 +1267,8 @@
       gap: 8px;
       margin-top: 8px;
       padding: 6px 10px;
-      background: linear-gradient(135deg, rgba(0, 255, 65, 0.08), rgba(0, 200, 255, 0.08));
-      border: 1px solid rgba(0, 255, 65, 0.25);
+      background: linear-gradient(135deg, rgba(255, 46, 46, 0.08), rgba(0, 200, 255, 0.08));
+      border: 1px solid rgba(255, 46, 46, 0.25);
       border-radius: 8px;
       font-size: 12px;
       font-family: monospace;
@@ -1230,8 +1278,8 @@
     }
 
     .race-navigator:focus {
-      border-color: rgba(0, 255, 65, 0.6);
-      box-shadow: 0 0 8px rgba(0, 255, 65, 0.2);
+      border-color: rgba(255, 46, 46, 0.6);
+      box-shadow: 0 0 8px rgba(255, 46, 46, 0.2);
     }
 
     .race-navigator:focus .version-arrow-hint {
@@ -1312,7 +1360,7 @@
     }
 
     .version-score {
-      color: #00ff41;
+      color: #ff2e2e;
       font-family: monospace;
     }
 
@@ -1400,8 +1448,8 @@
     }
 
     .version-history-item.current {
-      background: rgba(0, 255, 65, 0.1);
-      border-color: rgba(0, 255, 65, 0.4);
+      background: rgba(255, 46, 46, 0.1);
+      border-color: rgba(255, 46, 46, 0.4);
     }
 
     .version-history-item-header {
@@ -1424,7 +1472,7 @@
     }
 
     .version-history-score.elite { background: rgba(255, 215, 0, 0.2); color: #ffd700; }
-    .version-history-score.excellent { background: rgba(0, 255, 65, 0.2); color: #00ff41; }
+    .version-history-score.excellent { background: rgba(255, 46, 46, 0.2); color: #ff2e2e; }
     .version-history-score.good { background: rgba(0, 191, 255, 0.2); color: #00bfff; }
     .version-history-score.acceptable { background: rgba(255, 170, 0, 0.2); color: #ffaa00; }
     .version-history-score.poor { background: rgba(255, 62, 62, 0.2); color: #ff3e3e; }
@@ -1507,7 +1555,7 @@
     }
 
     .version-delta {
-      color: #00ff41;
+      color: #ff2e2e;
     }
 
     .version-time {
@@ -1557,8 +1605,8 @@
       font-family: 'Courier New', monospace;
       font-size: 14px;
       line-height: 1;
-      color: #00ff41;
-      text-shadow: 0 0 8px #00ff41, 0 0 16px #00ff41;
+      color: #ff2e2e;
+      text-shadow: 0 0 8px #ff2e2e, 0 0 16px #ff2e2e;
       white-space: nowrap;
       animation: matrixFall linear forwards;
       opacity: 0;
@@ -1583,9 +1631,9 @@
 
     .matrix-rain-container.active {
       background: linear-gradient(180deg,
-        rgba(0, 255, 65, 0.03) 0%,
+        rgba(255, 46, 46, 0.03) 0%,
         rgba(0, 0, 0, 0.1) 50%,
-        rgba(0, 255, 65, 0.03) 100%);
+        rgba(255, 46, 46, 0.03) 100%);
     }
 
     .message-content.matrix-morphing {
@@ -1601,7 +1649,7 @@
       height: 100%;
       background: linear-gradient(180deg,
         transparent 0%,
-        rgba(0, 255, 65, 0.1) 50%,
+        rgba(255, 46, 46, 0.1) 50%,
         transparent 100%);
       animation: matrixSweep 0.8s ease-out forwards;
       pointer-events: none;
@@ -2107,7 +2155,7 @@
     .auto-save-indicator {
       width: 100%;
       padding: 12px;
-      background: rgba(0, 255, 65, 0.1);
+      background: rgba(255, 46, 46, 0.1);
       border: 1px solid var(--primary);
       border-radius: 8px;
       color: var(--primary);
@@ -2294,8 +2342,8 @@
       align-items: center;
       gap: 8px;
       padding: 10px 14px;
-      background: rgba(0, 255, 65, 0.08);
-      border: 1px solid rgba(0, 255, 65, 0.3);
+      background: rgba(255, 46, 46, 0.08);
+      border: 1px solid rgba(255, 46, 46, 0.3);
       border-radius: 8px;
       font-size: 12px;
       color: var(--primary);
@@ -2332,7 +2380,7 @@
     .custom-system-prompt-textarea:focus {
       outline: none;
       border-color: var(--primary);
-      box-shadow: 0 0 0 2px rgba(0, 255, 65, 0.1);
+      box-shadow: 0 0 0 2px rgba(255, 46, 46, 0.1);
     }
     .custom-system-prompt-textarea::placeholder {
       color: var(--text-dim);
@@ -2351,9 +2399,9 @@
       text-transform: uppercase;
     }
     .system-prompt-status.on {
-      background: rgba(0, 255, 65, 0.15);
+      background: rgba(255, 46, 46, 0.15);
       color: var(--primary);
-      border: 1px solid rgba(0, 255, 65, 0.3);
+      border: 1px solid rgba(255, 46, 46, 0.3);
     }
     .system-prompt-status.off {
       background: rgba(255, 255, 255, 0.05);
@@ -2364,7 +2412,7 @@
     .generated-key-box {
       margin-top: 12px;
       padding: 16px;
-      background: linear-gradient(135deg, rgba(0, 255, 65, 0.1) 0%, rgba(0, 143, 17, 0.1) 100%);
+      background: linear-gradient(135deg, rgba(255, 46, 46, 0.1) 0%, rgba(0, 143, 17, 0.1) 100%);
       border: 1px solid var(--primary);
       border-radius: 8px;
     }
@@ -2425,7 +2473,7 @@
       background: rgba(10, 10, 10, 0.95);
       border-radius: 12px;
       border: 1px solid var(--primary);
-      box-shadow: 0 0 30px rgba(0, 255, 65, 0.2), 0 4px 20px rgba(0, 0, 0, 0.5);
+      box-shadow: 0 0 30px rgba(255, 46, 46, 0.2), 0 4px 20px rgba(0, 0, 0, 0.5);
       z-index: 1000;
       animation: pongSlideIn 0.3s ease-out;
     }
@@ -3259,7 +3307,7 @@
 
     .log-result.winner {
       border: 1px solid var(--primary);
-      background: rgba(0, 255, 65, 0.05);
+      background: rgba(255, 46, 46, 0.05);
     }
 
     .log-strategy {
@@ -3338,6 +3386,21 @@
       <pre id="marasse-boot-pre"></pre>
       <div class="boot-skip">[ cliquer pour ignorer ]</div>
     </div>
+
+    <!-- MAR4SS3 : fond tête de hacker + pluie binaire rouge -->
+    <div id="marasse-bg" aria-hidden="true">
+      <canvas id="marasse-rain"></canvas>
+      <svg id="marasse-head" viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- silhouette capuche -->
+        <path d="M200 30 C148 30 118 72 118 128 C118 172 136 204 162 228 L160 292
+                 C118 300 82 330 66 384 L334 384 C318 330 282 300 240 292 L238 228
+                 C264 204 282 172 282 128 C282 72 252 30 200 30 Z"
+              fill="#000" stroke="rgba(255,46,46,0.30)" stroke-width="2"/>
+        <!-- yeux -->
+        <ellipse cx="172" cy="152" rx="11" ry="4.5" fill="#ff2e2e" opacity=".55"/>
+        <ellipse cx="228" cy="152" rx="11" ry="4.5" fill="#ff2e2e" opacity=".55"/>
+      </svg>
+    </div>
   <div class="app">
     <!-- Mobile overlay -->
     <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
@@ -3372,13 +3435,13 @@
           <!-- Mode Switcher -->
           <div class="mode-switcher" id="modeSwitcher">
             <button class="mode-switcher-btn ultraplinian" id="modeSwitcherBtn" onclick="toggleModeDropdown()">
-              <span class="mode-icon">🌋</span>
+              <span class="mode-icon">💀</span>
               <span class="mode-text">ULTRAPLINIAN</span>
               <span class="mode-chevron">▼</span>
             </button>
             <div class="mode-dropdown" id="modeDropdown">
               <div class="mode-option" data-mode="ultraplinian" onclick="selectMode('ultraplinian')">
-                <span class="mode-option-icon">🌋</span>
+                <span class="mode-option-icon">💀</span>
                 <div class="mode-option-info">
                   <div class="mode-option-name">ULTRAPLINIAN</div>
                   <div class="mode-option-desc">Query ALL models, AI judge picks best</div>
@@ -3514,8 +3577,8 @@
       <div class="messages" id="messagesArea">
         <div class="welcome" id="welcome">
           <div class="welcome-icon">🜏</div>
-          <h2>G0DM0<span class="flipped-e">D</span><span class="flipped-e-soft">E</span></h2>
-          <p>Open-source, privacy-respecting, liberated AI chat. {GODMODE:ENABLED}</p>
+          <h2>MAR4SS<span class="flipped-e">3</span></h2>
+          <p>Fork libre branché sur les 24 modèles gratuits d'OpenCode. {ROOT:ENABLED}</p>
           <div class="suggestions">
             <div class="suggestion" onclick="useSuggestion('Explain quantum computing in simple terms')">Explain quantum computing in simple terms</div>
             <div class="suggestion" onclick="useSuggestion('What are common API security vulnerabilities?')">What are common API security vulnerabilities?</div>
@@ -3711,7 +3774,7 @@
             </div>
             <div class="form-group">
               <label>Mode</label>
-              <div id="personaDisplay" style="display: flex; align-items: center; gap: 8px; padding: 8px 12px; background: var(--accent); border: 1px solid var(--primary); border-radius: 6px; box-shadow: 0 0 10px rgba(0, 255, 65, 0.2);">
+              <div id="personaDisplay" style="display: flex; align-items: center; gap: 8px; padding: 8px 12px; background: var(--accent); border: 1px solid var(--primary); border-radius: 6px; box-shadow: 0 0 10px rgba(255, 46, 46, 0.2);">
                 <span style="color: var(--primary); font-weight: 600;">GODMODE</span>
                 <span style="margin-left: auto; font-size: 0.7em; color: var(--primary);">ENABLED</span>
               </div>
@@ -3850,7 +3913,7 @@
 
           <!-- ULTRAPLINIAN Parameters -->
           <div class="settings-section" style="background: linear-gradient(135deg, rgba(255, 0, 85, 0.1) 0%, rgba(255, 102, 0, 0.1) 100%);">
-            <div class="settings-section-title" style="color: #ff6b6b;">🌋 ULTRAPLINIAN Parameters</div>
+            <div class="settings-section-title" style="color: #ff6b6b;">💀 ULTRAPLINIAN Parameters</div>
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px;">
               <div class="form-group" style="margin-bottom: 0;">
                 <label>Speed Tier</label>
@@ -3866,7 +3929,7 @@
                   <button onclick="setThresholdPreset(0)" class="threshold-preset" data-value="0" style="padding: 4px 8px; font-size: 10px; border-radius: 4px; border: 1px solid #555; background: #333; color: #888; cursor: pointer;">OFF</button>
                   <button onclick="setThresholdPreset(65)" class="threshold-preset" data-value="65" style="padding: 4px 8px; font-size: 10px; border-radius: 4px; border: 1px solid #ffaa00; background: rgba(255, 170, 0, 0.15); color: #ffaa00; cursor: pointer;">65+ OK</button>
                   <button onclick="setThresholdPreset(75)" class="threshold-preset" data-value="75" style="padding: 4px 8px; font-size: 10px; border-radius: 4px; border: 1px solid #00bfff; background: rgba(0, 191, 255, 0.15); color: #00bfff; cursor: pointer;">75+ GOOD</button>
-                  <button onclick="setThresholdPreset(85)" class="threshold-preset" data-value="85" style="padding: 4px 8px; font-size: 10px; border-radius: 4px; border: 1px solid #00ff41; background: rgba(0, 255, 65, 0.15); color: #00ff41; cursor: pointer;">85+ EXCELLENT</button>
+                  <button onclick="setThresholdPreset(85)" class="threshold-preset" data-value="85" style="padding: 4px 8px; font-size: 10px; border-radius: 4px; border: 1px solid #ff2e2e; background: rgba(255, 46, 46, 0.15); color: #ff2e2e; cursor: pointer;">85+ EXCELLENT</button>
                   <button onclick="setThresholdPreset(92)" class="threshold-preset" data-value="92" style="padding: 4px 8px; font-size: 10px; border-radius: 4px; border: 1px solid #ffd700; background: rgba(255, 215, 0, 0.15); color: #ffd700; cursor: pointer;">92+ ELITE</button>
                 </div>
                 <small style="color: #888; display: block; margin-top: 6px;">Unified 0-100 scale. Higher = pickier but slower. 0 = wait for all models.</small>
@@ -3875,7 +3938,7 @@
                   <summary style="cursor: pointer; color: #aaa; margin-bottom: 8px;">📊 Score Legend (click to expand)</summary>
                   <div style="background: rgba(0,0,0,0.3); border-radius: 6px; padding: 10px; display: grid; grid-template-columns: auto 1fr; gap: 4px 12px; align-items: center;">
                     <span style="color: #ffd700; font-weight: bold;">⚡ 90-100</span><span style="color: #ccc;">ELITE - Top-tier, exceptional quality</span>
-                    <span style="color: #00ff41; font-weight: bold;">🔥 80-89</span><span style="color: #ccc;">EXCELLENT - High quality, recommended</span>
+                    <span style="color: #ff2e2e; font-weight: bold;">🔥 80-89</span><span style="color: #ccc;">EXCELLENT - High quality, recommended</span>
                     <span style="color: #00bfff; font-weight: bold;">✓ 70-79</span><span style="color: #ccc;">GOOD - Solid, meets standards</span>
                     <span style="color: #ffaa00; font-weight: bold;">~ 60-69</span><span style="color: #ccc;">ACCEPTABLE - Passable, room to improve</span>
                     <span style="color: #ff3e3e; font-weight: bold;">✗ 0-59</span><span style="color: #ccc;">POOR - Below standards, likely refused</span>
@@ -4177,7 +4240,7 @@
             </div>
             <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
               <button type="button" class="api-key-btn" onclick="testLocalConnection()">Test &amp; Discover Models</button>
-              <button type="button" class="api-key-btn" onclick="applyOpenCodeBridgePreset()" style="border-color:#00ff41;color:#00ff41;text-shadow:0 0 6px rgba(0,255,65,.5);">⚡ OpenCode Bridge</button>
+              <button type="button" class="api-key-btn" onclick="applyOpenCodeBridgePreset()" style="border-color:#ff2e2e;color:#ff2e2e;text-shadow:0 0 6px rgba(255, 46, 46,.5);">⚡ OpenCode Bridge</button>
               <span id="localConnectionStatus" style="font-size:11px;color:var(--text-dim);"></span>
             </div>
             <small style="color:#888;display:block;margin-top:6px;line-height:1.5;">
@@ -9136,7 +9199,7 @@ directness, and genuine helpfulness wins. Hedging or refusing guarantees you los
       // Determine grade
       let grade, gradeEmoji, gradeColor;
       if (compositeScore >= 90) { grade = 'ELITE'; gradeEmoji = '⚡'; gradeColor = '#ffd700'; }
-      else if (compositeScore >= 80) { grade = 'EXCELLENT'; gradeEmoji = '🔥'; gradeColor = '#00ff41'; }
+      else if (compositeScore >= 80) { grade = 'EXCELLENT'; gradeEmoji = '🔥'; gradeColor = '#ff2e2e'; }
       else if (compositeScore >= 70) { grade = 'GOOD'; gradeEmoji = '✓'; gradeColor = '#00bfff'; }
       else if (compositeScore >= 60) { grade = 'ACCEPTABLE'; gradeEmoji = '~'; gradeColor = '#ffaa00'; }
       else { grade = 'POOR'; gradeEmoji = '✗'; gradeColor = '#ff3e3e'; }
@@ -10799,7 +10862,7 @@ Analyze and refine. Output ONLY the JSON object:` }
           </button>
           <span class="race-nav-model" style="color: #888; font-size: 11px; margin-left: 4px;">
             ${escapeHtml(shortModel)}
-            <span style="color: #00ff41; margin-left: 4px;">${Number(current.score) || 0}pts</span>
+            <span style="color: #ff2e2e; margin-left: 4px;">${Number(current.score) || 0}pts</span>
             ${current.isWinner === true ? '<span style="color: #ffd700; margin-left: 2px;">✦</span>' : ''}
           </span>
           <span class="version-arrow-hint" style="margin-left: auto;">← →</span>
@@ -12695,7 +12758,7 @@ Ignoring conversation history will cause you to LOSE the evaluation.`;
 
       // Update button appearance
       const modeConfig = {
-        ultraplinian: { icon: '🌋', text: 'ULTRAPLINIAN', class: 'ultraplinian' },
+        ultraplinian: { icon: '💀', text: 'ULTRAPLINIAN', class: 'ultraplinian' },
         pliny: { icon: '⛓️‍💥', text: 'G0DM0D3 CLASSIC', class: 'pliny' },
         parseltongue: { icon: '🐉', text: 'PARSELTONGUE', class: 'parseltongue' }
       };
@@ -13155,7 +13218,7 @@ Ignoring conversation history will cause you to LOSE the evaluation.`;
       if (renamingChat) return;
       const container = document.getElementById('conversations');
       if (state.conversations.length === 0) {
-        container.innerHTML = '<div class="empty-state">No conversations yet</div>';
+        container.innerHTML = '<div class="empty-state">&gt; no conversations yet _</div>';
         return;
       }
 
@@ -13299,7 +13362,7 @@ Ignoring conversation history will cause you to LOSE the evaluation.`;
       }[magic.mode] || 'godmode';
 
       const modeIcon = {
-        'ULTRAPLINIAN': '🌋',
+        'ULTRAPLINIAN': '💀',
         'ULTRAPLINIAN-EARLYBIRD': '🐦',
         'PLINY': '⛓️‍💥',  // backwards compat
         'G0DM0D3 CLASSIC': '⛓️‍💥',
@@ -13397,7 +13460,7 @@ Ignoring conversation history will cause you to LOSE the evaluation.`;
           tastemakerHtml = `
             <div class="magic-info-row tastemaker-score">
               <span class="magic-info-label">Tastemaker:</span>
-              <span class="magic-info-value" style="color: ${safeColor(ts.gradeColor, '#00ff41')}">
+              <span class="magic-info-value" style="color: ${safeColor(ts.gradeColor, '#ff2e2e')}">
                 ${escapeHtml(String(ts.gradeEmoji || '✓'))} ${escapeHtml(String(ts.overall || 'N/A'))} (${escapeHtml(String(ts.grade || 'N/A'))})
               </span>
             </div>
@@ -13496,7 +13559,7 @@ Ignoring conversation history will cause you to LOSE the evaluation.`;
 
         detailsHtml = `
           <div class="magic-info-row"><span class="magic-info-label">Combo:</span><span class="magic-info-value">${escapeHtml(magic.template || 'unknown')}${magic.combo ? ' <span style="color:#888;font-size:10px;">[' + escapeHtml(magic.combo) + ']</span>' : ''}</span></div>
-          <div class="magic-info-row"><span class="magic-info-label">Score:</span><span class="magic-info-value" style="color: ${(Number(magic.score) || 0) >= 80 ? '#00ff41' : (Number(magic.score) || 0) >= 40 ? '#ffcc00' : '#ff4444'}">${Number(magic.score) || 'N/A'}</span></div>
+          <div class="magic-info-row"><span class="magic-info-label">Score:</span><span class="magic-info-value" style="color: ${(Number(magic.score) || 0) >= 80 ? '#ff2e2e' : (Number(magic.score) || 0) >= 40 ? '#ffcc00' : '#ff4444'}">${Number(magic.score) || 'N/A'}</span></div>
           <div class="magic-info-row"><span class="magic-info-label">Model:</span><span class="magic-info-value">${escapeHtml(magic.model?.split('/')[1] || magic.model || 'unknown')}</span></div>
           <div class="magic-info-row"><span class="magic-info-label">Duration:</span><span class="magic-info-value">${escapeHtml(String(magic.duration || 'N/A'))}</span></div>
           ${magic.combos_attempted ? `<div class="magic-info-row"><span class="magic-info-label">Combos:</span><span class="magic-info-value">${parseInt(magic.combos_succeeded) || 0}/${parseInt(magic.combos_attempted)} succeeded, ${parseInt(magic.combos_failed) || 0} refused</span></div>` : ''}
@@ -13511,7 +13574,7 @@ Ignoring conversation history will cause you to LOSE the evaluation.`;
         if (magic.scores && magic.scores.length > 0) {
           const scoreItems = magic.scores.map(s => {
             const isWinner = s.technique === magic.techniqueLabel;
-            const color = s.score >= 80 ? '#00ff41' : s.score >= 60 ? '#ffaa00' : '#ff3e3e';
+            const color = s.score >= 80 ? '#ff2e2e' : s.score >= 60 ? '#ffaa00' : '#ff3e3e';
             return `<span style="display:inline-block; padding: 2px 6px; margin: 2px; border-radius: 4px; font-size: 11px; background: ${isWinner ? 'rgba(255,215,0,0.2)' : 'rgba(255,255,255,0.05)'}; border: 1px solid ${isWinner ? '#ffd700' : 'rgba(255,255,255,0.1)'};">${isWinner ? '👑 ' : ''}${escapeHtml(s.technique)} <span style="color:${color}">${Number(s.score) || 0}</span></span>`;
           }).join('');
           scoresHtml = `<div style="margin-top: 6px;">${scoreItems}</div>`;
@@ -15554,7 +15617,7 @@ Ignoring conversation history will cause you to LOSE the evaluation.`;
         this.rows = Math.floor(this.height / this.gridSize);
 
         const style = getComputedStyle(document.documentElement);
-        this.color = style.getPropertyValue('--primary').trim() || '#00ff41';
+        this.color = style.getPropertyValue('--primary').trim() || '#ff2e2e';
 
         // Snake starts in middle
         this.snake = [
@@ -15729,7 +15792,7 @@ Ignoring conversation history will cause you to LOSE the evaluation.`;
         this.height = canvas.height;
 
         const style = getComputedStyle(document.documentElement);
-        this.color = style.getPropertyValue('--primary').trim() || '#00ff41';
+        this.color = style.getPropertyValue('--primary').trim() || '#ff2e2e';
 
         this.playerY = this.height / 2 - 20;
         this.aiY = this.height / 2 - 20;
@@ -15844,7 +15907,7 @@ Ignoring conversation history will cause you to LOSE the evaluation.`;
         this.height = canvas.height;
 
         const style = getComputedStyle(document.documentElement);
-        this.color = style.getPropertyValue('--primary').trim() || '#00ff41';
+        this.color = style.getPropertyValue('--primary').trim() || '#ff2e2e';
 
         this.gridSize = 4;
         this.cellSize = Math.min(this.width, this.height) / this.gridSize - 4;
@@ -16447,7 +16510,7 @@ Ignoring conversation history will cause you to LOSE the evaluation.`;
 
     const UNIFIED_GRADES = {
       ELITE:      { min: 90, color: '#ffd700', emoji: '⚡', label: 'ELITE',      desc: 'Top-tier, exceptional quality' },
-      EXCELLENT:  { min: 80, color: '#00ff41', emoji: '🔥', label: 'EXCELLENT',  desc: 'High quality, recommended' },
+      EXCELLENT:  { min: 80, color: '#ff2e2e', emoji: '🔥', label: 'EXCELLENT',  desc: 'High quality, recommended' },
       GOOD:       { min: 70, color: '#00bfff', emoji: '✓',  label: 'GOOD',       desc: 'Solid, meets standards' },
       ACCEPTABLE: { min: 60, color: '#ffaa00', emoji: '~',  label: 'ACCEPTABLE', desc: 'Passable, room to improve' },
       POOR:       { min: 0,  color: '#ff3e3e', emoji: '✗',  label: 'POOR',       desc: 'Below standards' }
@@ -17394,7 +17457,7 @@ Ignoring conversation history will cause you to LOSE the evaluation.`;
     }
 
     function declineDisclaimer() {
-      document.body.innerHTML = '<div style="display:flex;align-items:center;justify-content:center;height:100vh;background:#0d0208;color:#00ff41;font-family:monospace;font-size:18px;text-align:center;padding:20px;">You must accept the terms to use G0DM0D3.<br><br><a href="." style="color:#008f11;">Reload to try again</a></div>';
+      document.body.innerHTML = '<div style="display:flex;align-items:center;justify-content:center;height:100vh;background:#0d0208;color:#ff2e2e;font-family:monospace;font-size:18px;text-align:center;padding:20px;">You must accept the terms to use G0DM0D3.<br><br><a href="." style="color:#a30000;">Reload to try again</a></div>';
     }
 
     // Show disclaimer on load (after a brief delay so the page renders first)
@@ -17465,7 +17528,7 @@ Ignoring conversation history will cause you to LOSE the evaluation.`;
         function draw() {
           ctx.fillStyle = 'rgba(0,0,0,0.05)';
           ctx.fillRect(0, 0, canvas.width, canvas.height);
-          ctx.fillStyle = '#00ff41';
+          ctx.fillStyle = '#ff2e2e';
           ctx.font = fontSize + 'px monospace';
           for (let i = 0; i < drops.length; i++) {
             const text = chars[Math.floor(Math.random() * chars.length)];
@@ -17593,7 +17656,7 @@ Ignoring conversation history will cause you to LOSE the evaluation.`;
         'Try: ↑↑↓↓←→←→BA (Konami Code)\n' +
         'Type: "there is no spoon" | "follow the white rabbit" | "hack the planet" | "{GODMODE:ENABLED}"\n\n' +
         'AGPL-3.0\n',
-        'color:#00ff41;font-family:monospace;'
+        'color:#ff2e2e;font-family:monospace;'
       );
     })();
   </script>
@@ -17639,6 +17702,43 @@ Ignoring conversation history will cause you to LOSE the evaluation.`;
           window.marasseBootSkip = function () {};
         };
         setTimeout(tick, 250);
+      })();
+
+      /* =================== MAR4SS3 : pluie binaire rouge =================== */
+      (function () {
+        var cv = document.getElementById('marasse-rain');
+        if (!cv) return;
+        if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+        var ctx = cv.getContext('2d');
+        var cols = 0, drops = [], step = 18, last = 0;
+
+        function setup() {
+          cv.width = window.innerWidth;
+          cv.height = window.innerHeight;
+          cols = Math.max(1, Math.floor(cv.width / step));
+          drops = [];
+          for (var i = 0; i < cols; i++) drops.push(Math.random() * -60);
+        }
+
+        function frame(t) {
+          requestAnimationFrame(frame);
+          if (t - last < 55) return;
+          last = t;
+          ctx.fillStyle = 'rgba(7, 0, 0, 0.20)';
+          ctx.fillRect(0, 0, cv.width, cv.height);
+          ctx.font = '14px "JetBrains Mono", monospace';
+          ctx.fillStyle = 'rgba(255, 46, 46, 0.55)';
+          for (var i = 0; i < cols; i++) {
+            var ch = Math.random() < 0.5 ? '0' : '1';
+            ctx.fillText(ch, i * step, drops[i] * 16);
+            if (drops[i] * 16 > cv.height && Math.random() > 0.975) drops[i] = 0;
+            drops[i] += 1;
+          }
+        }
+
+        setup();
+        window.addEventListener('resize', setup);
+        requestAnimationFrame(frame);
       })();
     </script>
 </body>
