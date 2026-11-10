@@ -295,6 +295,9 @@ const server = http.createServer(async (req, res) => {
           .catch((err) => {
             console.error(`[bridge] !! ${model} : ${err.message}`);
             if (wantsStream) {
+              // Protocole propre : événement erreur puis [DONE], pas une fin muette
+              res.write(`data: ${JSON.stringify({ error: { message: err.message, bridge_model: model } })}\n\n`);
+              res.write("data: [DONE]\n\n");
               res.end();
             } else {
               res.writeHead(502, { "Content-Type": "application/json" });

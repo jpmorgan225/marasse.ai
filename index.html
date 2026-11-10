@@ -7341,6 +7341,7 @@ directness, and genuine helpfulness wins. Hedging or refusing guarantees you los
       if (!errorMsg) return 'unknown';
       const e = errorMsg.toLowerCase();
       if (/401|403|invalid.*key|unauthorized|forbidden|auth.*fail|invalid_api_key/.test(e)) return 'auth';
+      if (/quota|usage limit|free usage|limite d'usage/.test(e)) return 'quota';
       if (/402|insufficient.*credit|payment.*required|out of credits|quota.*exceeded/.test(e)) return 'credits';
       if (/404|no endpoints|not found|model.*not.*available|does not exist/.test(e)) return 'not_found';
       if (/429|rate.?limit|too many requests|throttl/.test(e)) return 'rate_limit';
@@ -7369,6 +7370,9 @@ directness, and genuine helpfulness wins. Hedging or refusing guarantees you los
             if (soleProvider === 'openrouter') return 'Your OpenRouter API key appears invalid or expired. Check it at openrouter.ai/keys.';
             if (soleProvider === 'venice') return 'Your Venice API key appears invalid or expired. Check it at venice.ai/settings.';
             return 'A configured provider rejected its API key. Check your OpenRouter, Venice, and local-server credentials.';
+          case 'quota':
+            if (soleProvider === 'local') return "QUOTA OpenCode gratuit épuisé pour aujourd'hui — la limite remonte chaque jour. Les courses multi-modèles consomment le quota intensivement : réduis le nombre de modèles. Plus d'usage : https://opencode.ai/go";
+            return "QUOTA épuisé. Attends la réinitialisation quotidienne de la limite gratuite.";
           case 'credits':
             if (soleProvider === 'local') return 'Your local model server reported a quota or payment error. Check the local gateway account.';
             if (soleProvider === 'openrouter') return 'Insufficient OpenRouter credits. Top up at openrouter.ai/credits.';
