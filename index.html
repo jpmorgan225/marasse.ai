@@ -2295,10 +2295,10 @@
       gap: 8px;
       width: 100%;
       padding: 12px 16px;
-      background: linear-gradient(135deg, #1a1a2e 0%, #0d1b2a 100%);
-      border: 1px solid #6c5ce7;
+      background: linear-gradient(135deg, #1a0505 0%, #0d0000 100%);
+      border: 1px solid rgba(255, 46, 46, .55);
       border-radius: 8px;
-      color: #a29bfe;
+      color: var(--primary);
       font-family: inherit;
       font-size: 13px;
       font-weight: 600;
@@ -2307,21 +2307,21 @@
       letter-spacing: 0.5px;
     }
     .or-login-btn:hover {
-      border-color: #a29bfe;
-      background: linear-gradient(135deg, #2d1b69 0%, #1a1a2e 100%);
-      color: #ddd6fe;
-      box-shadow: 0 0 20px rgba(108, 92, 231, 0.3);
+      border-color: var(--primary);
+      background: linear-gradient(135deg, #2a0000 0%, #140000 100%);
+      color: #ffd9d9;
+      box-shadow: 0 0 20px rgba(255, 46, 46, 0.3);
     }
     .or-login-btn .or-icon {
       width: 18px;
       height: 18px;
       border-radius: 4px;
-      background: #6c5ce7;
+      background: var(--primary);
       display: flex;
       align-items: center;
       justify-content: center;
       font-size: 11px;
-      color: white;
+      color: #0a0000;
       font-weight: bold;
     }
     .or-divider {
@@ -3289,6 +3289,50 @@
 
     .no-api-chip-hot:hover { box-shadow: 0 0 18px rgba(255, 46, 46, .35); }
 
+    /* =================== CARTE OPENCODE (Settings → API Keys) =================== */
+    .opencode-card {
+      border: 1px solid rgba(255, 46, 46, .45) !important;
+      background: linear-gradient(135deg, rgba(255, 46, 46, .09), rgba(30, 0, 0, .35)) !important;
+      box-shadow: inset 0 0 30px rgba(255, 46, 46, .05), 0 0 18px rgba(255, 46, 46, .08);
+    }
+    .opencode-badge {
+      font-size: 9px;
+      letter-spacing: 1px;
+      font-weight: 800;
+      padding: 2px 6px;
+      border-radius: 3px;
+      color: #0a0000;
+      background: var(--primary);
+      box-shadow: 0 0 10px rgba(255, 46, 46, .45);
+    }
+    .opencode-desc {
+      margin: 0 0 12px;
+      font-size: 12.5px;
+      line-height: 1.55;
+      color: var(--text);
+      opacity: .92;
+    }
+    .opencode-connect {
+      border-color: var(--primary) !important;
+      color: var(--primary) !important;
+      font-weight: 700;
+      box-shadow: 0 0 14px rgba(255, 46, 46, .22);
+    }
+    .opencode-connect:hover { box-shadow: 0 0 22px rgba(255, 46, 46, .40); }
+    .opencode-status {
+      flex: 1 1 100%;
+      font-size: 11px;
+      color: var(--text-dim);
+      letter-spacing: .3px;
+    }
+    #localConnectionStatus {
+      flex: 1 1 100%;
+      font-size: 11px;
+      line-height: 1.4;
+      word-break: break-word;
+    }
+    /* =================== /CARTE OPENCODE =================== */
+
     .no-api-warning a {
       color: var(--primary);
       cursor: pointer;
@@ -4226,6 +4270,28 @@
 
         <!-- API Keys Tab -->
         <div class="settings-panel" id="panel-api">
+          <div class="settings-section opencode-card">
+            <div class="settings-section-title" style="color: var(--primary); display:flex; align-items:center; gap:8px;">
+              ⚡ OpenCode Bridge — Free models
+              <span class="opencode-badge">RECOMMENDED</span>
+            </div>
+            <div class="form-group">
+              <p class="opencode-desc">
+                <strong>24 free models</strong> through your own OpenCode account — no API key, no payment.
+                Install the <code>opencode</code> CLI, run the local bridge once, then connect here.
+              </p>
+              <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
+                <button type="button" class="api-key-btn opencode-connect" onclick="applyOpenCodeBridgePreset()">⚡ Connect OpenCode Bridge</button>
+                <span id="opencodeConnectionStatus" class="opencode-status">Not connected</span>
+              </div>
+              <small style="color:#888;display:block;margin-top:8px;line-height:1.5;">
+                Bridge URL: <code>http://localhost:5791/v1</code> · Local-only mode is enabled automatically
+                (no OpenRouter, no telemetry). Install with:
+                <code>git clone https://github.com/jpmorgan225/marasse.ai &amp;&amp; cd marasse.ai/bridge &amp;&amp; bash install.sh</code>
+              </small>
+              <a href="https://github.com/jpmorgan225/marasse.ai/tree/main/bridge" target="_blank" class="api-key-link">Bridge setup guide →</a>
+            </div>
+          </div>
           <div class="settings-section">
             <div class="settings-section-title">OpenRouter API</div>
             <div class="form-group">
@@ -4655,9 +4721,17 @@
       saveState();
     }
 
+    function setLocalStatus(text, color) {
+      ['localConnectionStatus', 'opencodeConnectionStatus'].forEach(function (id) {
+        const el = document.getElementById(id);
+        if (!el) return;
+        el.textContent = text;
+        if (color) el.style.color = color;
+      });
+    }
+
     async function testLocalConnection() {
-      const status = document.getElementById('localConnectionStatus');
-      if (status) { status.textContent = 'Connecting…'; status.style.color = 'var(--text-dim)'; }
+      setLocalStatus('Connecting…', 'var(--text-dim)');
       try {
         const baseUrl = normalizeLocalBaseUrl(document.getElementById('localBaseUrlInput').value);
         const key = (document.getElementById('localApiKeyInput').value || '').trim();
@@ -4675,9 +4749,9 @@
         saveLocalSettings();
         if (typeof syncOpenCodeModelOptions === 'function') syncOpenCodeModelOptions();
         if (typeof updateApiWarning === 'function') updateApiWarning();
-        if (status) { status.textContent = `Connected — ${models.length} model${models.length === 1 ? '' : 's'} found`; status.style.color = 'var(--accent)'; }
+        setLocalStatus(`Connected — ${models.length} model${models.length === 1 ? '' : 's'} found`, 'var(--primary)');
       } catch (err) {
-        if (status) { status.textContent = `Connection failed: ${err.message}. Check server CORS.`; status.style.color = '#ff6b6b'; }
+        setLocalStatus(`Connection failed: ${err.message}. Check server CORS.`, '#ff6b6b');
       }
     }
 
@@ -16765,6 +16839,15 @@ Ignoring conversation history will cause you to LOSE the evaluation.`;
     // ═══════════════════════════════════════════════════════════════════
 
     function openSettings() {
+      // OpenCode est proposé par défaut : sans provider, on ouvre directement API Keys.
+      if (!hasAnyChatProvider() && typeof switchSettingsTab === 'function') switchSettingsTab('api');
+      // Rafraîchit l'état de la carte OpenCode
+      if (hasLocalProvider()) {
+        const n = getLocalModels().length;
+        setLocalStatus(`Connected — ${n} local model${n === 1 ? '' : 's'}`, 'var(--primary)');
+      } else {
+        setLocalStatus('Not connected', 'var(--text-dim)');
+      }
       // Load values into form
       document.getElementById('apiKeyInput').value = state.apiKey;
       document.getElementById('veniceKeyInput').value = state.veniceApiKey || '';
