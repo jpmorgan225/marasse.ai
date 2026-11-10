@@ -5,3 +5,9 @@ node_modules/
 .wrangler/
 dist/
 tsconfig.tsbuildinfo
+
+# === MAR4SS3 additions ===
+server.log
+ui.log
+bridge/server.log
+*.bak

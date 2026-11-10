@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://static.cloudflareinsights.com https://challenges.cloudflare.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; connect-src 'self' https://openrouter.ai https://*.openrouter.ai https://api.venice.ai http://localhost:* https://localhost:* http://127.0.0.1:* https://127.0.0.1:* http://[::1]:* https://[::1]:* https://cloudflareinsights.com https://*.cloudflareinsights.com; img-src 'self' data: blob:;">
-  <title>G0DM0DƎ</title>
+  <title>MAR4SS3.AI · OpenCode</title>
   <link rel="icon" type="image/svg+xml" href="public/favicon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -24,6 +24,38 @@
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    /* =================== MAR4SS3 CRT / SCANLINES =================== */
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 9999;
+      background:
+        repeating-linear-gradient(
+          0deg,
+          rgba(0, 255, 65, 0.05) 0px,
+          rgba(0, 255, 65, 0.05) 1px,
+          transparent 1px,
+          transparent 3px
+        );
+      mix-blend-mode: overlay;
+    }
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 9998;
+      background: radial-gradient(
+        ellipse at center,
+        transparent 55%,
+        rgba(0, 0, 0, 0.45) 100%
+      );
+    }
+    .marasse-glow { text-shadow: 0 0 8px rgba(0, 255, 65, 0.6); }
+    /* =================== /MAR4SS3 =================== */
 
     /* Safari-safe viewport height */
     html {
@@ -3287,7 +3319,7 @@
     <aside class="sidebar" id="sidebar">
       <div class="sidebar-header">
         <div class="logo">
-          <span class="logo-text">G0DM0<span class="flipped-e">D</span><span class="flipped-e-soft">E</span></span>
+          <span class="logo-text">MAR4SS<span class="flipped-e">3</span></span>
         </div>
         <button class="new-chat-btn" onclick="newChat()">
           <span>+</span> New Chat
@@ -3295,7 +3327,7 @@
       </div>
 
       <div class="conversations" id="conversations">
-        <div class="empty-state">No conversations yet</div>
+        <div class="empty-state">&gt; no conversations yet _</div>
       </div>
 
       <div class="sidebar-footer">
@@ -4118,8 +4150,14 @@
             </div>
             <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
               <button type="button" class="api-key-btn" onclick="testLocalConnection()">Test &amp; Discover Models</button>
+              <button type="button" class="api-key-btn" onclick="applyOpenCodeBridgePreset()" style="border-color:#00ff41;color:#00ff41;text-shadow:0 0 6px rgba(0,255,65,.5);">⚡ OpenCode Bridge</button>
               <span id="localConnectionStatus" style="font-size:11px;color:var(--text-dim);"></span>
             </div>
+            <small style="color:#888;display:block;margin-top:6px;line-height:1.5;">
+              ⚡ OpenCode Bridge = preset pour les modèles <strong>gratuits</strong> d'opencode
+              (bridge local sur <code>localhost:5791</code>). Prérequis : le CLI
+              <code>opencode</code> installé + pont lancé (<code>node ~/.godmod3-bridge/bridge.mjs</code>).
+            </small>
             <a href="LOCAL_MODELS.md" target="_blank" class="api-key-link">Local setup guide →</a>
           </div>
           <div class="settings-section">
@@ -4404,6 +4442,20 @@
         body: JSON.stringify(requestBody),
         signal: options.signal,
       });
+    }
+
+    function applyOpenCodeBridgePreset() {
+      // Preset G0DM0D3 ⇄ OpenCode : modèles gratuits d'opencode via le bridge local
+      const urlInput = document.getElementById('localBaseUrlInput');
+      if (urlInput) urlInput.value = 'http://localhost:5791/v1';
+      const enabled = document.getElementById('localEnabled');
+      if (enabled) enabled.checked = true;
+      // Local-only : jamais OpenRouter / Venice + télémétrie désactivée
+      const only = document.getElementById('localOnly');
+      if (only) only.checked = true;
+      // testLocalConnection() sauvegarde les settings, remplit localModelsInput
+      // depuis /v1/models du bridge (= 24 modèles gratuits) et coche localEnabled
+      testLocalConnection();
     }
 
     async function testLocalConnection() {

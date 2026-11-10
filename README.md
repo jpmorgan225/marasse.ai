@@ -1,3 +1,15 @@
+# MAR4SS3.AI
+
+> **Fork open-source de [G0DM0D3](https://github.com/elder-plinius/G0DM0D3)** (AGPL-3.0) — interface de chat IA
+> reliée aux **modèles 100 % gratuits d'OpenCode** au lieu d'OpenRouter payant.
+>
+> - `index.html` : interface forkée (branding MAR4SS3, thème CRT/hacker, preset ⚡ OpenCode Bridge)
+> - `bridge/` : pont local Node (zéro dépendance) compatible OpenAI → `opencode run`
+>
+> **Installation 3 commandes** : [bridge/README.md](bridge/README.md) — licence : AGPL-3.0 (fichier LICENSE intact,
+> fork déclaré conformément à la licence). Modificaciones : voir historique `git` et `NOTICE-FORK.md`.
+
+---
 ```
  ▄████  ██████  ██████  ███▄ ▄███  ██████  ██████  ██████
 ██      ██  ██  ██   ██ ██ ███ ██  ██  ██  ██   ██      ██
