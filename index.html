@@ -416,7 +416,7 @@
     .header-liquid-toggle.active {
       border-color: rgba(0, 200, 255, 0.5);
       background: rgba(0, 200, 255, 0.1);
-      color: #00c8ff;
+      color: #ff2e2e;
       opacity: 1;
     }
 
@@ -1123,7 +1123,7 @@
     .liquid-indicator.refining {
       background: linear-gradient(135deg, rgba(0, 200, 255, 0.15) 0%, rgba(138, 43, 226, 0.15) 100%);
       border: 1px solid rgba(0, 200, 255, 0.4);
-      color: #00c8ff;
+      color: #ff2e2e;
     }
 
     .liquid-indicator.pulse {
@@ -1207,7 +1207,7 @@
     .racing-leader-badge.upgrading {
       background: rgba(0, 200, 255, 0.15);
       border-color: rgba(0, 200, 255, 0.4);
-      color: #00c8ff;
+      color: #ff2e2e;
     }
 
     /* Global Liquid Mode Indicator - fixed position */
@@ -1222,7 +1222,7 @@
       background: linear-gradient(135deg, rgba(0, 200, 255, 0.2) 0%, rgba(138, 43, 226, 0.2) 100%);
       border: 1px solid rgba(0, 200, 255, 0.5);
       border-radius: 12px;
-      color: #00c8ff;
+      color: #ff2e2e;
       font-size: 13px;
       font-weight: 600;
       z-index: 1000;
@@ -1239,7 +1239,7 @@
       width: 18px;
       height: 18px;
       border: 2px solid rgba(0, 200, 255, 0.3);
-      border-top-color: #00c8ff;
+      border-top-color: #ff2e2e;
       border-radius: 50%;
       animation: liquidSpin 1s linear infinite;
     }
@@ -1322,7 +1322,7 @@
     .version-btn {
       background: rgba(0, 200, 255, 0.2);
       border: 1px solid rgba(0, 200, 255, 0.4);
-      color: #00c8ff;
+      color: #ff2e2e;
       padding: 4px 8px;
       border-radius: 4px;
       cursor: pointer;
@@ -1355,7 +1355,7 @@
     }
 
     .version-label {
-      color: #00c8ff;
+      color: #ff2e2e;
       font-weight: 500;
     }
 
@@ -1407,7 +1407,7 @@
 
     .version-history-header h3 {
       margin: 0;
-      color: #00c8ff;
+      color: #ff2e2e;
       font-size: 16px;
     }
 
@@ -1571,7 +1571,7 @@
 
     .improvement-tag {
       background: rgba(0, 200, 255, 0.15);
-      color: #00c8ff;
+      color: #ff2e2e;
       padding: 2px 6px;
       border-radius: 4px;
       font-size: 10px;
@@ -3941,29 +3941,29 @@
 
           <!-- LIQUID RESPONSE — Universal Delivery Layer -->
           <div class="settings-section" style="background: linear-gradient(135deg, rgba(0, 200, 255, 0.12) 0%, rgba(138, 43, 226, 0.08) 100%); border: 1px solid rgba(0, 200, 255, 0.25);">
-            <div class="settings-section-title" style="color: #00c8ff;">💧 LIQUID RESPONSE — Delivery Layer</div>
+            <div class="settings-section-title" style="color: #ff2e2e;">💧 LIQUID RESPONSE — Delivery Layer</div>
             <small style="color: #999; display: block; margin-bottom: 12px; line-height: 1.5;">
               Universal layer that controls <strong style="color: #ccc;">how</strong> responses arrive. Independent of which strategy generates the content.
               When enabled, you see the best response so far immediately, with live morphing upgrades as better results come in.
-              Also toggleable via the <span style="color: #00c8ff; font-weight: 600;">LIQUID</span> button in the chat header.
+              Also toggleable via the <span style="color: #ff2e2e; font-weight: 600;">LIQUID</span> button in the chat header.
             </small>
 
             <!-- Enable toggle -->
             <div style="display: flex; align-items: center; gap: 10px; background: rgba(0,200,255,0.08); border: 1px solid rgba(0,200,255,0.2); border-radius: 8px; padding: 12px; margin-bottom: 12px;">
-              <input type="checkbox" id="liquidModeGlobal" style="width: 18px; height: 18px; accent-color: #00c8ff; cursor: pointer;">
-              <label for="liquidModeGlobal" style="margin: 0; font-size: 13px; font-weight: 500; color: #00c8ff; cursor: pointer;">Enable Liquid Response</label>
+              <input type="checkbox" id="liquidModeGlobal" style="width: 18px; height: 18px; accent-color: #ff2e2e; cursor: pointer;">
+              <label for="liquidModeGlobal" style="margin: 0; font-size: 13px; font-weight: 500; color: #ff2e2e; cursor: pointer;">Enable Liquid Response</label>
             </div>
 
             <!-- Controls: Min Delta + Max Iterations + Target Score -->
             <div id="liquidGlobalControls" style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; margin-bottom: 16px;">
               <div class="form-group" style="margin: 0;">
-                <label style="color: #00c8ff;">Min Improvement: <span id="liquidMinDeltaValueGlobal" style="color: #fff; font-weight: 600;">8</span>%</label>
-                <input type="range" id="liquidMinDeltaGlobal" min="1" max="50" value="8" style="width: 100%; accent-color: #00c8ff;">
+                <label style="color: #ff2e2e;">Min Improvement: <span id="liquidMinDeltaValueGlobal" style="color: #fff; font-weight: 600;">8</span>%</label>
+                <input type="range" id="liquidMinDeltaGlobal" min="1" max="50" value="8" style="width: 100%; accent-color: #ff2e2e;">
                 <small style="color: #888; display: block; margin-top: 4px;">Score points a new leader must beat the current by (1-50)</small>
               </div>
               <div class="form-group" style="margin: 0;">
-                <label style="color: #00c8ff;">Max Attempts: <span id="liquidMaxValueGlobal" style="color: #fff; font-weight: 600;">4</span></label>
-                <input type="range" id="liquidMaxIterationsGlobal" min="1" max="10" value="4" style="width: 100%; accent-color: #00c8ff;">
+                <label style="color: #ff2e2e;">Max Attempts: <span id="liquidMaxValueGlobal" style="color: #fff; font-weight: 600;">4</span></label>
+                <input type="range" id="liquidMaxIterationsGlobal" min="1" max="10" value="4" style="width: 100%; accent-color: #ff2e2e;">
                 <small style="color: #888; display: block; margin-top: 4px;">How many refinement passes to try (1-10)</small>
               </div>
               <div class="form-group" style="margin: 0;">
@@ -3975,7 +3975,7 @@
 
             <!-- Mode Interactions -->
             <div style="margin-top: 4px;">
-              <div style="font-size: 10px; font-weight: bold; color: #00c8ff; letter-spacing: 1.5px; margin-bottom: 8px; font-family: monospace;">HOW LIQUID INTERACTS WITH EACH MODE</div>
+              <div style="font-size: 10px; font-weight: bold; color: #ff2e2e; letter-spacing: 1.5px; margin-bottom: 8px; font-family: monospace;">HOW LIQUID INTERACTS WITH EACH MODE</div>
               <div style="display: grid; gap: 6px;">
                 <!-- Standard -->
                 <div style="padding: 8px 10px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 6px;">
@@ -4182,7 +4182,7 @@
             <details style="font-size: 11px;">
               <summary style="cursor: pointer; color: #aaa; margin-bottom: 8px;">📊 Context Profiles (click to expand)</summary>
               <div style="background: rgba(0,0,0,0.3); border-radius: 6px; padding: 10px; display: grid; grid-template-columns: auto 1fr; gap: 4px 12px; align-items: center;">
-                <span style="color: #00ff88; font-weight: bold;">CODE</span><span style="color: #ccc;">Low temp (0.15), tight sampling, minimal penalties</span>
+                <span style="color: #ff2e2e; font-weight: bold;">CODE</span><span style="color: #ccc;">Low temp (0.15), tight sampling, minimal penalties</span>
                 <span style="color: #ffa500; font-weight: bold;">CREATIVE</span><span style="color: #ccc;">High temp (1.15), diverse sampling, anti-repetition</span>
                 <span style="color: #00bfff; font-weight: bold;">ANALYTICAL</span><span style="color: #ccc;">Medium temp (0.4), balanced, slight penalties</span>
                 <span style="color: #a855f7; font-weight: bold;">CHAT</span><span style="color: #ccc;">Natural temp (0.75), relaxed sampling</span>
@@ -4193,25 +4193,25 @@
 
           <!-- Universal Model Parameters -->
           <div class="settings-section" style="background: linear-gradient(135deg, rgba(0, 255, 136, 0.1) 0%, rgba(0, 200, 255, 0.1) 100%);">
-            <div class="settings-section-title" style="color: #00ff88;">🎛️ Model Parameters (Manual Override)</div>
+            <div class="settings-section-title" style="color: #ff2e2e;">🎛️ Model Parameters (Manual Override)</div>
             <small style="color: #888; display: block; margin-bottom: 12px;">Universal settings applied to all model API calls</small>
 
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
               <!-- Temperature -->
               <div class="form-group" style="margin: 0;">
-                <label style="color: #00ff88;">
+                <label style="color: #ff2e2e;">
                   🌡️ Temperature: <span id="tempValue" style="color: #fff; font-weight: 600;">0.7</span>
                 </label>
-                <input type="range" id="modelTemperature" min="0" max="2" step="0.05" value="0.7" style="width: 100%; accent-color: #00ff88;">
+                <input type="range" id="modelTemperature" min="0" max="2" step="0.05" value="0.7" style="width: 100%; accent-color: #ff2e2e;">
                 <small style="color: #888; display: block; margin-top: 4px;">Creativity/randomness (0=precise, 2=wild)</small>
               </div>
 
               <!-- Top P -->
               <div class="form-group" style="margin: 0;">
-                <label style="color: #00c8ff;">
+                <label style="color: #ff2e2e;">
                   🎯 Top P: <span id="topPValue" style="color: #fff; font-weight: 600;">1.0</span>
                 </label>
-                <input type="range" id="modelTopP" min="0" max="1" step="0.05" value="1" style="width: 100%; accent-color: #00c8ff;">
+                <input type="range" id="modelTopP" min="0" max="1" step="0.05" value="1" style="width: 100%; accent-color: #ff2e2e;">
                 <small style="color: #888; display: block; margin-top: 4px;">Nucleus sampling (0.1=focused, 1=full)</small>
               </div>
 
@@ -4254,8 +4254,8 @@
             <div style="margin-top: 12px; padding-top: 12px; border-top: 1px solid rgba(255,255,255,0.1);">
               <label style="color: #888; font-size: 11px; margin-bottom: 6px; display: block;">Quick Presets:</label>
               <div style="display: flex; gap: 6px; flex-wrap: wrap;">
-                <button onclick="setModelPreset('precise')" style="padding: 4px 8px; font-size: 10px; border-radius: 4px; border: 1px solid #00ff88; background: rgba(0, 255, 136, 0.15); color: #00ff88; cursor: pointer;">🎯 Precise</button>
-                <button onclick="setModelPreset('balanced')" style="padding: 4px 8px; font-size: 10px; border-radius: 4px; border: 1px solid #00c8ff; background: rgba(0, 200, 255, 0.15); color: #00c8ff; cursor: pointer;">⚖️ Balanced</button>
+                <button onclick="setModelPreset('precise')" style="padding: 4px 8px; font-size: 10px; border-radius: 4px; border: 1px solid #ff2e2e; background: rgba(0, 255, 136, 0.15); color: #ff2e2e; cursor: pointer;">🎯 Precise</button>
+                <button onclick="setModelPreset('balanced')" style="padding: 4px 8px; font-size: 10px; border-radius: 4px; border: 1px solid #ff2e2e; background: rgba(0, 200, 255, 0.15); color: #ff2e2e; cursor: pointer;">⚖️ Balanced</button>
                 <button onclick="setModelPreset('creative')" style="padding: 4px 8px; font-size: 10px; border-radius: 4px; border: 1px solid #ffa500; background: rgba(255, 165, 0, 0.15); color: #ffa500; cursor: pointer;">🎨 Creative</button>
                 <button onclick="setModelPreset('wild')" style="padding: 4px 8px; font-size: 10px; border-radius: 4px; border: 1px solid #ff6b6b; background: rgba(255, 107, 107, 0.15); color: #ff6b6b; cursor: pointer;">🔥 Wild</button>
                 <button onclick="setModelPreset('longform')" style="padding: 4px 8px; font-size: 10px; border-radius: 4px; border: 1px solid #a855f7; background: rgba(168, 85, 247, 0.15); color: #a855f7; cursor: pointer;">📚 Long-form</button>
@@ -4344,7 +4344,7 @@
             <div class="form-group">
               <label>Model IDs</label>
               <input type="text" id="localModelsInput" placeholder="qwen3:8b, llama3.2:3b">
-              <small style="color:#888;display:block;margin-top:4px;">Comma-separated IDs reported by <code>/v1/models</code> (maximum 8). Multiple IDs race together.</small>
+              <small style="color:#888;display:block;margin-top:4px;">Comma-separated IDs reported by <code>/v1/models</code> (maximum 24). Multiple IDs race together.</small>
             </div>
             <div class="form-group">
               <label>API Key (Optional)</label>
@@ -4552,7 +4552,7 @@
       return [...new Set(String(state.localModels || '')
         .split(',')
         .map(model => model.trim())
-        .filter(Boolean))].slice(0, 8);
+        .filter(Boolean))].slice(0, 24);
     }
 
     function normalizeLocalBaseUrl(raw = state.localBaseUrl) {
@@ -4702,13 +4702,26 @@
       testLocalConnection();
     }
 
+    // Synchronise le formulaire "Local/OpenCode" à partir de l'état — appelé au
+    // démarrage ET à l'ouverture de Settings, pour que les cases à cocher et les
+    // champs reflètent toujours la réalité (même hors modal).
+    function syncLocalSettingsForm() {
+      document.getElementById('localEnabled').checked = !!state.localEnabled;
+      document.getElementById('localOnly').checked = !!state.localOnly;
+      document.getElementById('localBaseUrlInput').value = state.localBaseUrl || 'http://localhost:11434/v1';
+      document.getElementById('localModelsInput').value = state.localModels || '';
+      document.getElementById('localApiKeyInput').value = state.localApiKey || '';
+    }
+
     // Sauvegarde ciblée des réglages locaux : ne touche ni au mode, ni au persona,
     // ni au modèle (contrairement à saveSettings() qui lit tout le modal — dont des
     // champs non initialisés quand on l'appelle hors de Settings).
     function saveLocalSettings() {
       state.localEnabled = document.getElementById('localEnabled').checked;
       state.localOnly = document.getElementById('localOnly').checked;
-      state.localBaseUrl = (document.getElementById('localBaseUrlInput').value || '').trim() || 'http://localhost:11434/v1';
+      // Ne jamais écraser l'URL existante avec le défaut Ollama si le champ est vide
+      const urlInput = (document.getElementById('localBaseUrlInput').value || '').trim();
+      state.localBaseUrl = urlInput || (state.localBaseUrl || '').trim() || 'http://localhost:11434/v1';
       state.localModels = (document.getElementById('localModelsInput').value || '').trim();
       const newLocalKey = (document.getElementById('localApiKeyInput').value || '').trim();
       if (newLocalKey !== state.localApiKey) _localApiKeyGeneration++;
@@ -4733,7 +4746,9 @@
     async function testLocalConnection() {
       setLocalStatus('Connecting…', 'var(--text-dim)');
       try {
-        const baseUrl = normalizeLocalBaseUrl(document.getElementById('localBaseUrlInput').value);
+        const baseUrl = normalizeLocalBaseUrl(
+          document.getElementById('localBaseUrlInput').value || state.localBaseUrl || ''
+        );
         const key = (document.getElementById('localApiKeyInput').value || '').trim();
         const headers = key ? { Authorization: `Bearer ${key}` } : {};
         const response = await fetch(`${baseUrl}/models`, { headers });
@@ -4742,7 +4757,7 @@
         const models = (Array.isArray(data?.data) ? data.data : [])
           .map(item => item?.id)
           .filter(id => typeof id === 'string' && id.trim())
-          .slice(0, 8);
+          .slice(0, 24);
         if (!models.length) throw new Error('Server returned no model IDs');
         document.getElementById('localModelsInput').value = models.join(', ');
         document.getElementById('localEnabled').checked = true;
@@ -10953,7 +10968,7 @@ Analyze and refine. Output ONLY the JSON object:` }
         const progress = ((iteration + 1) / maxIter) * 100;
         progressHtml = `
           <div class="liquid-progress-bar" style="flex: 1; height: 4px; background: rgba(255,255,255,0.1); border-radius: 2px; margin: 0 8px; overflow: hidden;">
-            <div style="width: ${progress}%; height: 100%; background: linear-gradient(90deg, #00c8ff, #a855f7); transition: width 0.3s;"></div>
+            <div style="width: ${progress}%; height: 100%; background: linear-gradient(90deg, #ff2e2e, #a855f7); transition: width 0.3s;"></div>
           </div>
         `;
       }
@@ -11034,7 +11049,7 @@ Analyze and refine. Output ONLY the JSON object:` }
             ◂
           </button>
           <span class="race-nav-info">
-            <span style="color: #00c8ff; font-weight: 600;">${currentIdx + 1}</span>
+            <span style="color: #ff2e2e; font-weight: 600;">${currentIdx + 1}</span>
             <span style="color: #555;"> / </span>
             <span style="color: #888;">${responses.length}</span>
           </span>
@@ -12868,6 +12883,8 @@ Ignoring conversation history will cause you to LOSE the evaluation.`;
       document.getElementById('modelSelect').value = state.model;
       // Ajoute les modèles locaux au sélecteur et aligne l'en-tête en local-only
       if (typeof syncOpenCodeModelOptions === 'function') syncOpenCodeModelOptions();
+      // Synchronise le formulaire local (cases à cocher + URL du pont) dès le boot
+      if (typeof syncLocalSettingsForm === 'function') syncLocalSettingsForm();
       // Restore L1B3RT4S combo selector
       // Migrate stale libertasSelectedCombo values to current combo IDs
       const comboIdMigration = { 'grok-420': 'grok-reset', 'claude-inversion': 'sonnet-35', 'sonnet-37': 'sonnet-35' };
@@ -13560,7 +13577,7 @@ Ignoring conversation history will cause you to LOSE the evaluation.`;
       let autoTuneHtml = '';
       if (magic.autoTune) {
         const at = magic.autoTune;
-        const contextColors = { code: '#00ff88', creative: '#ffa500', analytical: '#00bfff', conversational: '#a855f7', chaotic: '#ff3e3e' };
+        const contextColors = { code: '#ff2e2e', creative: '#ffa500', analytical: '#00bfff', conversational: '#a855f7', chaotic: '#ff3e3e' };
         const strategyLabels = { adaptive: 'ADAPTIVE', precise: 'PRECISE', balanced: 'BALANCED', creative: 'CREATIVE', chaotic: 'CHAOTIC' };
         const contextLabels = { code: 'CODE', creative: 'CREATIVE', analytical: 'ANALYTICAL', conversational: 'CHAT', chaotic: 'CHAOS', security: 'SECURITY', medical: 'MEDICAL', legal: 'LEGAL', financial: 'FINANCIAL', scientific: 'SCIENTIFIC', philosophical: 'PHILOSOPHICAL', instructional: 'INSTRUCTIONAL', persuasive: 'PERSUASIVE', mathematical: 'MATHEMATICAL', historical: 'HISTORICAL', political: 'POLITICAL', subversive: 'SUBVERSIVE', emotional: 'EMOTIONAL', strategic: 'STRATEGIC', synthesis: 'SYNTHESIS' };
 
@@ -15252,7 +15269,7 @@ Ignoring conversation history will cause you to LOSE the evaluation.`;
         // iterative refinement until peak quality.
         // ═══════════════════════════════════════════════════════════════════
         if (state.liquidMode) {
-          console.log('%c[DEBUG] ✓ ENTERING G0DM0D3 CLASSIC + LIQUID RESPONSE MODE', 'background: linear-gradient(90deg, #a855f7, #00c8ff); color: white; padding: 4px 8px; font-weight: bold;');
+          console.log('%c[DEBUG] ✓ ENTERING G0DM0D3 CLASSIC + LIQUID RESPONSE MODE', 'background: linear-gradient(90deg, #a855f7, #ff2e2e); color: white; padding: 4px 8px; font-weight: bold;');
           _log('[DEBUG] Liquid Response active — progressive G0DM0D3 CLASSIC serving, no early exit');
 
           showPongGame();
@@ -16618,7 +16635,7 @@ Ignoring conversation history will cause you to LOSE the evaluation.`;
             <div style="color: #aaa; font-size: 11px; line-height: 1.5; max-height: 60px; overflow: hidden; text-overflow: ellipsis;">
               ${escapeHtml(l.preview)}${l.preview.length >= 300 ? '...' : ''}
             </div>
-            ${l.upgradeCount > 1 ? `<div style="color: #00c8ff; font-size: 10px; margin-top: 4px;">↑ Upgraded ${l.upgradeCount - 1}x — better response incoming</div>` : ''}
+            ${l.upgradeCount > 1 ? `<div style="color: #ff2e2e; font-size: 10px; margin-top: 4px;">↑ Upgraded ${l.upgradeCount - 1}x — better response incoming</div>` : ''}
           </div>
         `;
       }
@@ -16848,14 +16865,10 @@ Ignoring conversation history will cause you to LOSE the evaluation.`;
       } else {
         setLocalStatus('Not connected', 'var(--text-dim)');
       }
+      syncLocalSettingsForm();
       // Load values into form
       document.getElementById('apiKeyInput').value = state.apiKey;
       document.getElementById('veniceKeyInput').value = state.veniceApiKey || '';
-      document.getElementById('localEnabled').checked = !!state.localEnabled;
-      document.getElementById('localOnly').checked = !!state.localOnly;
-      document.getElementById('localBaseUrlInput').value = state.localBaseUrl || 'http://localhost:11434/v1';
-      document.getElementById('localModelsInput').value = state.localModels || '';
-      document.getElementById('localApiKeyInput').value = state.localApiKey || '';
       updateOAuthUI();
       document.getElementById('defaultModelInput').value = state.model;
       document.getElementById('personaSelect').value = state.persona;
@@ -17307,9 +17320,9 @@ Ignoring conversation history will cause you to LOSE the evaluation.`;
     function showImportStatus(type, msg) {
       const el = document.getElementById('importStatus');
       el.style.display = 'block';
-      el.style.border = '1px solid ' + (type === 'error' ? '#ff4444' : '#00ff88');
+      el.style.border = '1px solid ' + (type === 'error' ? '#ff4444' : '#ff2e2e');
       el.style.background = type === 'error' ? 'rgba(255,68,68,0.06)' : 'rgba(0,255,136,0.06)';
-      el.style.color = type === 'error' ? '#ff4444' : '#00ff88';
+      el.style.color = type === 'error' ? '#ff4444' : '#ff2e2e';
       el.textContent = (type === 'error' ? '✗ ' : '✓ ') + msg;
       setTimeout(function() { el.style.display = 'none'; }, 6000);
     }
