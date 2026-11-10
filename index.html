@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://static.cloudflareinsights.com https://challenges.cloudflare.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; connect-src 'self' https://openrouter.ai https://*.openrouter.ai https://api.venice.ai http://localhost:* https://localhost:* http://127.0.0.1:* https://127.0.0.1:* http://[::1]:* https://[::1]:* https://cloudflareinsights.com https://*.cloudflareinsights.com; img-src 'self' data: blob:;">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://static.cloudflareinsights.com https://challenges.cloudflare.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; connect-src 'self' https://openrouter.ai https://*.openrouter.ai https://api.venice.ai http://localhost:* https://localhost:* http://127.0.0.1:* https://127.0.0.1:* http://[::1]:* https://[::1]:* https://cloudflareinsights.com https://*.cloudflareinsights.com https://generativelanguage.googleapis.com https://api.groq.com https://api.mistral.ai; img-src 'self' data: blob:;">
   <title>MAR4SS3.AI · OpenCode</title>
   <link rel="icon" type="image/svg+xml" href="public/favicon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -4293,6 +4293,27 @@
             </div>
           </div>
           <div class="settings-section">
+            <div class="settings-section-title">Autres IA gratuites (OpenAI-compatible)</div>
+            <div class="form-group">
+              <p class="opencode-desc">
+                Chacune a sa <strong>propre limite gratuite</strong> — elles ne partagent pas ton quota opencode.
+                Pour toutes : colle la clé dans « API Key (Optional) » de la section ci-dessous, puis <em>Test &amp; Discover Models</em>.
+              </p>
+              <div style="display:flex;flex-wrap:wrap;gap:8px;align-items:center;">
+                <button type="button" class="api-key-btn" onclick="setFreeProviderPreset('ollama')">🦙 Ollama local · illimité</button>
+                <button type="button" class="api-key-btn" onclick="setFreeProviderPreset('gemini')">✨ Gemini free</button>
+                <a class="api-key-link" href="https://aistudio.google.com/apikey" target="_blank" style="margin:0;">clé →</a>
+                <button type="button" class="api-key-btn" onclick="setFreeProviderPreset('groq')">⚡ Groq free</button>
+                <a class="api-key-link" href="https://console.groq.com/keys" target="_blank" style="margin:0;">clé →</a>
+                <button type="button" class="api-key-btn" onclick="setFreeProviderPreset('mistral')">🌬️ Mistral free</button>
+                <a class="api-key-link" href="https://console.mistral.ai/api-keys" target="_blank" style="margin:0;">clé →</a>
+              </div>
+              <small id="freeProviderHint" style="color:#888;display:block;margin-top:8px;line-height:1.5;">
+                Ollama : aucun compte, 100 % local — <code>ollama pull qwen3:4b</code> puis serve. Gemini/Groq/Mistral : clé gratuite, quotas séparés.
+              </small>
+            </div>
+          </div>
+          <div class="settings-section">
             <div class="settings-section-title">OpenRouter API</div>
             <div class="form-group">
               <button id="orLoginBtn" class="or-login-btn" onclick="startOpenRouterLogin()">
@@ -4700,6 +4721,46 @@
       // testLocalConnection() sauvegarde les settings, remplit localModelsInput
       // depuis /v1/models du bridge (= 24 modèles gratuits) et coche localEnabled
       testLocalConnection();
+    }
+
+    // Presets "IA gratuites" : URLs OpenAI-compatibles avec quotas séparés
+    const FREE_PROVIDER_PRESETS = {
+      ollama: {
+        url: 'http://localhost:11434/v1',
+        label: 'Ollama (local, illimité)',
+        hint: 'Aucune clé : `ollama pull qwen3:4b` (ou 8b max — ta RAM), puis Test & Discover Models.'
+      },
+      gemini: {
+        url: 'https://generativelanguage.googleapis.com/v1beta/openai',
+        label: 'Gemini (Google AI Studio)',
+        keyUrl: 'https://aistudio.google.com/apikey',
+        hint: '1) Clé gratuite sur aistudio.google.com/apikey 2) Colle-la dans « API Key (Optional) » ci-dessous 3) Test & Discover Models.'
+      },
+      groq: {
+        url: 'https://api.groq.com/openai/v1',
+        label: 'Groq (rapide, Llama/Qwen)',
+        keyUrl: 'https://console.groq.com/keys',
+        hint: '1) Clé gratuite sur console.groq.com/keys 2) Colle-la dans « API Key (Optional) » 3) Test & Discover Models.'
+      },
+      mistral: {
+        url: 'https://api.mistral.ai/v1',
+        label: 'Mistral (tier gratuit)',
+        keyUrl: 'https://console.mistral.ai/api-keys',
+        hint: '1) Clé gratuite sur console.mistral.ai/api-keys 2) Colle-la dans « API Key (Optional) » 3) Test & Discover Models.'
+      }
+    };
+
+    function setFreeProviderPreset(id) {
+      const p = FREE_PROVIDER_PRESETS[id];
+      if (!p) return;
+      document.getElementById('localBaseUrlInput').value = p.url;
+      document.getElementById('localEnabled').checked = true;
+      const hintEl = document.getElementById('freeProviderHint');
+      if (hintEl) {
+        hintEl.textContent = `${p.label} sélectionné. ${p.keyUrl ? p.hint : 'Lance le serveur puis clique « Test & Discover Models ».'}`;
+        hintEl.style.color = 'var(--primary)';
+      }
+      saveLocalSettings();
     }
 
     // Synchronise le formulaire "Local/OpenCode" à partir de l'état — appelé au
