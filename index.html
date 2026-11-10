@@ -3237,16 +3237,57 @@
 
     /* No API Key Warning */
     .no-api-warning {
-      background: rgba(255, 62, 62, 0.1);
-      border: 1px solid var(--danger);
-      border-radius: 8px;
-      padding: 12px 16px;
+      background: linear-gradient(135deg, rgba(255, 46, 46, .10), rgba(40, 0, 0, .45));
+      border: 1px solid rgba(255, 46, 46, .45);
+      border-radius: 4px;
+      padding: 10px 14px;
       margin-bottom: 12px;
-      font-size: 13px;
+      font-size: 12.5px;
       display: flex;
       align-items: center;
-      gap: 10px;
+      flex-wrap: wrap;
+      gap: 8px 12px;
+      line-height: 1.45;
     }
+
+    .no-api-msg { opacity: .92; }
+
+    .no-api-actions {
+      display: inline-flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .no-api-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 4px 10px;
+      border-radius: 3px;
+      border: 1px solid rgba(255, 46, 46, .35);
+      background: rgba(255, 46, 46, .08);
+      color: var(--primary) !important;
+      font-size: 12px;
+      text-decoration: none !important;
+      cursor: pointer;
+      transition: background .15s, border-color .15s, box-shadow .15s;
+      font-family: inherit;
+    }
+
+    .no-api-chip:hover {
+      background: rgba(255, 46, 46, .20);
+      border-color: rgba(255, 46, 46, .70);
+    }
+
+    .no-api-chip-hot {
+      border-color: rgba(255, 46, 46, .65);
+      background: rgba(255, 46, 46, .16);
+      box-shadow: 0 0 12px rgba(255, 46, 46, .18);
+      font-weight: 700;
+    }
+
+    .no-api-chip-hot:hover { box-shadow: 0 0 18px rgba(255, 46, 46, .35); }
 
     .no-api-warning a {
       color: var(--primary);
@@ -3591,7 +3632,12 @@
       <div class="input-area">
         <div class="input-container">
           <div id="noApiWarning" class="no-api-warning" style="display: none;">
-            ⚠️ No model provider. <a onclick="startOpenRouterLogin()" style="cursor:pointer;text-decoration:underline;">Log in with OpenRouter</a> or <a onclick="openSettings()" style="cursor:pointer;text-decoration:underline;">configure OpenRouter, Venice, or local models</a> to start.
+            <span class="no-api-msg">⚠️ No model connected.</span>
+            <span class="no-api-actions">
+              <button type="button" class="no-api-chip no-api-chip-hot" onclick="connectOpenCodeFromBanner()" title="Preset local : modèles gratuits opencode via le bridge 5791">⚡ OpenCode Bridge · 24 free</button>
+              <a class="no-api-chip" onclick="startOpenRouterLogin()">OpenRouter</a>
+              <a class="no-api-chip" onclick="openSettings()">Venice / local</a>
+            </span>
           </div>
           <!-- Image preview strip (shown when image attached) -->
           <div class="image-preview-strip" id="imagePreviewStrip">
@@ -4534,6 +4580,48 @@
       });
     }
 
+    function connectOpenCodeFromBanner() {
+      // Action rapide depuis la bannière "No model connected"
+      applyOpenCodeBridgePreset();
+      // laisse le temps à testLocalConnection() de sauvegarder, puis rafraîchit
+      setTimeout(function () {
+        if (typeof updateApiWarning === 'function') updateApiWarning();
+      }, 1600);
+    }
+
+    // Injecte les modèles locaux (bridge OpenCode) dans les sélecteurs de modèle
+    // et, en local-only, sélectionne le premier modèle local pour que l'en-tête
+    // affiche le modèle réellement utilisé (et non un modèle OpenRouter fantôme).
+    function syncOpenCodeModelOptions() {
+      const local = getLocalModels();
+      if (!local.length) return;
+      const isOpenCode = local.every(function (m) { return /^opencode\//.test(m); });
+      ['modelSelect', 'defaultModelInput'].forEach(function (id) {
+        const sel = document.getElementById(id);
+        if (!sel) return;
+        Array.from(sel.querySelectorAll('optgroup[data-marasse-local]')).forEach(function (g) { g.remove(); });
+        const group = document.createElement('optgroup');
+        group.label = isOpenCode ? 'Local · OpenCode (gratuit)' : 'Local models';
+        group.setAttribute('data-marasse-local', '1');
+        local.forEach(function (model) {
+          const opt = document.createElement('option');
+          opt.value = model;
+          opt.textContent = model.replace(/^opencode\//, '');
+          group.appendChild(opt);
+        });
+        sel.insertBefore(group, sel.firstChild);
+      });
+      if (state.localOnly) {
+        const current = local.indexOf(state.model) !== -1 ? state.model : local[0];
+        state.model = current;
+        const mainSel = document.getElementById('modelSelect');
+        if (mainSel) mainSel.value = current;
+        const defSel = document.getElementById('defaultModelInput');
+        if (defSel) defSel.value = current;
+        saveState();
+      }
+    }
+
     function applyOpenCodeBridgePreset() {
       // Preset G0DM0D3 ⇄ OpenCode : modèles gratuits d'opencode via le bridge local
       const urlInput = document.getElementById('localBaseUrlInput');
@@ -4546,6 +4634,25 @@
       // testLocalConnection() sauvegarde les settings, remplit localModelsInput
       // depuis /v1/models du bridge (= 24 modèles gratuits) et coche localEnabled
       testLocalConnection();
+    }
+
+    // Sauvegarde ciblée des réglages locaux : ne touche ni au mode, ni au persona,
+    // ni au modèle (contrairement à saveSettings() qui lit tout le modal — dont des
+    // champs non initialisés quand on l'appelle hors de Settings).
+    function saveLocalSettings() {
+      state.localEnabled = document.getElementById('localEnabled').checked;
+      state.localOnly = document.getElementById('localOnly').checked;
+      state.localBaseUrl = (document.getElementById('localBaseUrlInput').value || '').trim() || 'http://localhost:11434/v1';
+      state.localModels = (document.getElementById('localModelsInput').value || '').trim();
+      const newLocalKey = (document.getElementById('localApiKeyInput').value || '').trim();
+      if (newLocalKey !== state.localApiKey) _localApiKeyGeneration++;
+      state.localApiKey = newLocalKey;
+      if (state.localOnly) {
+        state.localEnabled = true;
+        document.getElementById('localEnabled').checked = true;
+        _telemetry.buffer.length = 0;
+      }
+      saveState();
     }
 
     async function testLocalConnection() {
@@ -4565,7 +4672,9 @@
         if (!models.length) throw new Error('Server returned no model IDs');
         document.getElementById('localModelsInput').value = models.join(', ');
         document.getElementById('localEnabled').checked = true;
-        saveSettings();
+        saveLocalSettings();
+        if (typeof syncOpenCodeModelOptions === 'function') syncOpenCodeModelOptions();
+        if (typeof updateApiWarning === 'function') updateApiWarning();
         if (status) { status.textContent = `Connected — ${models.length} model${models.length === 1 ? '' : 's'} found`; status.style.color = 'var(--accent)'; }
       } catch (err) {
         if (status) { status.textContent = `Connection failed: ${err.message}. Check server CORS.`; status.style.color = '#ff6b6b'; }
@@ -12683,6 +12792,8 @@ Ignoring conversation history will cause you to LOSE the evaluation.`;
       sanitizeLoadedState();
       _log('[DEBUG] loadState: final state.ultraplinian =', state.ultraplinian);
       document.getElementById('modelSelect').value = state.model;
+      // Ajoute les modèles locaux au sélecteur et aligne l'en-tête en local-only
+      if (typeof syncOpenCodeModelOptions === 'function') syncOpenCodeModelOptions();
       // Restore L1B3RT4S combo selector
       // Migrate stale libertasSelectedCombo values to current combo IDs
       const comboIdMigration = { 'grok-420': 'grok-reset', 'claude-inversion': 'sonnet-35', 'sonnet-37': 'sonnet-35' };
